@@ -15,21 +15,21 @@ ActiveRecord::Schema.define(version: 33) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contact_tags", id: :serial, force: :cascade do |t|
+  create_table "contact_tags", force: :cascade do |t|
     t.integer "contact_id", null: false
     t.integer "tag_id", null: false
     t.index ["contact_id", "tag_id"], name: "index_contact_tags_on_contact_id_and_tag_id", unique: true
   end
 
-  create_table "contacts", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+  create_table "contacts", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "email"
     t.string "first_name"
     t.string "last_name"
     t.string "address"
     t.string "address2"
     t.string "city"
-    t.integer "state_id"
+    t.bigint "state_id"
     t.string "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "custom_fields", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "entity_type_id", null: false
-    t.integer "field_type_id", null: false
+  create_table "custom_fields", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "entity_type_id", null: false
+    t.bigint "field_type_id", null: false
     t.string "name", limit: 255, null: false
     t.integer "position", default: 0, null: false
     t.boolean "required", default: false, null: false
@@ -56,13 +56,13 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["user_id"], name: "index_custom_fields_on_user_id"
   end
 
-  create_table "entity_types", id: :serial, force: :cascade do |t|
+  create_table "entity_types", force: :cascade do |t|
     t.string "name", limit: 32
     t.index ["name"], name: "index_entity_types_on_name", unique: true
   end
 
-  create_table "field_options", id: :serial, force: :cascade do |t|
-    t.integer "custom_field_id", null: false
+  create_table "field_options", force: :cascade do |t|
+    t.bigint "custom_field_id", null: false
     t.string "name", limit: 255
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
@@ -72,13 +72,13 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["position"], name: "index_field_options_on_position"
   end
 
-  create_table "field_types", id: :serial, force: :cascade do |t|
+  create_table "field_types", force: :cascade do |t|
     t.string "name", limit: 32
     t.index ["name"], name: "index_field_types_on_name", unique: true
   end
 
-  create_table "field_values", id: :serial, force: :cascade do |t|
-    t.integer "custom_field_id", null: false
+  create_table "field_values", force: :cascade do |t|
+    t.bigint "custom_field_id", null: false
     t.integer "entity_id", null: false
     t.integer "entity_type", null: false
     t.text "value"
@@ -88,12 +88,12 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["custom_field_id"], name: "index_field_values_on_custom_field_id"
   end
 
-  create_table "followup_types", id: :serial, force: :cascade do |t|
+  create_table "followup_types", force: :cascade do |t|
     t.string "name", limit: 16
     t.index ["name"], name: "index_followup_types_on_name", unique: true
   end
 
-  create_table "followups", id: :serial, force: :cascade do |t|
+  create_table "followups", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "contact_id", null: false
     t.integer "followup_type_id", null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["when"], name: "index_followups_on_when"
   end
 
-  create_table "notes", id: :serial, force: :cascade do |t|
+  create_table "notes", force: :cascade do |t|
     t.integer "contact_id", null: false
     t.text "note", null: false
     t.datetime "created_at", null: false
@@ -119,14 +119,14 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["created_at"], name: "index_notes_on_created_at"
   end
 
-  create_table "phone_types", id: :serial, force: :cascade do |t|
+  create_table "phone_types", force: :cascade do |t|
     t.string "name", limit: 16
     t.index ["name"], name: "index_phone_types_on_name", unique: true
   end
 
-  create_table "phones", id: :serial, force: :cascade do |t|
-    t.integer "contact_id"
-    t.integer "phone_type_id"
+  create_table "phones", force: :cascade do |t|
+    t.bigint "contact_id"
+    t.bigint "phone_type_id"
     t.string "number", limit: 11
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["phone_type_id"], name: "index_phones_on_phone_type_id"
   end
 
-  create_table "products", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+  create_table "products", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name", limit: 255
     t.text "desc"
     t.decimal "price", precision: 10, scale: 2
@@ -143,20 +143,20 @@ ActiveRecord::Schema.define(version: 33) do
     t.datetime "updated_at", null: false
     t.string "img_file_name"
     t.string "img_content_type"
-    t.integer "img_file_size"
+    t.bigint "img_file_size"
     t.datetime "img_updated_at"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "providers", id: :serial, force: :cascade do |t|
+  create_table "providers", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sale_items", id: :serial, force: :cascade do |t|
-    t.integer "sale_id"
-    t.integer "product_id"
+  create_table "sale_items", force: :cascade do |t|
+    t.bigint "sale_id"
+    t.bigint "product_id"
     t.decimal "price", precision: 10, scale: 2
     t.integer "quantity"
     t.datetime "created_at", null: false
@@ -165,16 +165,16 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["sale_id"], name: "index_sale_items_on_sale_id"
   end
 
-  create_table "sales", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "contact_id"
+  create_table "sales", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_sales_on_contact_id"
     t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
-  create_table "sessions", id: :serial, force: :cascade do |t|
+  create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at", null: false
@@ -183,14 +183,14 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "states", id: :serial, force: :cascade do |t|
+  create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "abbr"
     t.index ["abbr"], name: "index_states_on_abbr", unique: true
     t.index ["name"], name: "index_states_on_name", unique: true
   end
 
-  create_table "tags", id: :serial, force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", limit: 32, null: false
     t.integer "contact_tags_count", default: 0
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 33) do
     t.index ["user_id", "name"], name: "index_tags_on_user_id_and_name", unique: true
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", limit: 64, null: false
     t.string "fname", limit: 32
     t.string "lname", limit: 32

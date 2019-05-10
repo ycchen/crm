@@ -1,4 +1,4 @@
-class DropCounterCache < ActiveRecord::Migration[5.0]
+class DropCounterCache < ActiveRecord::Migration[5.2]
 
   def up
     remove_column :users, :followups_count

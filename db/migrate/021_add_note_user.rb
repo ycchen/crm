@@ -1,4 +1,4 @@
-class AddNoteUser < ActiveRecord::Migration[5.0]
+class AddNoteUser < ActiveRecord::Migration[5.2]
   def up
     add_column :notes, :user_id, :integer
     Note.all.each do |n|

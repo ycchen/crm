@@ -1,4 +1,4 @@
-class CreateFieldValues < ActiveRecord::Migration[5.0]
+class CreateFieldValues < ActiveRecord::Migration[5.2]
 
   def up
     create_table :field_values do |t|

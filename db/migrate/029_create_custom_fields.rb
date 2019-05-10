@@ -1,4 +1,4 @@
-class CreateCustomFields < ActiveRecord::Migration[5.0]
+class CreateCustomFields < ActiveRecord::Migration[5.2]
 
   def up
     create_table :custom_fields do |t|

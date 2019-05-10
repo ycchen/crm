@@ -1,4 +1,4 @@
-class AddUserFields < ActiveRecord::Migration[5.0]
+class AddUserFields < ActiveRecord::Migration[5.2]
 
   def up
     add_column :users, :time_zone, :string, length: 255, null: false, default: 'Central Time (US & Canada)'

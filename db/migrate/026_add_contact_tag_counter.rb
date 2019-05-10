@@ -1,4 +1,4 @@
-class AddContactTagCounter < ActiveRecord::Migration[5.0]
+class AddContactTagCounter < ActiveRecord::Migration[5.2]
 
   def up
     add_column :tags, :contact_tags_count, :integer, default: 0

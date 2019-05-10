@@ -1,4 +1,4 @@
-class UpdateContactLastContacted < ActiveRecord::Migration[5.0]
+class UpdateContactLastContacted < ActiveRecord::Migration[5.2]
   def up
     Followup.completed.each do |f|
       c = f.contact

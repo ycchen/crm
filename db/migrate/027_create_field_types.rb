@@ -1,4 +1,4 @@
-class CreateFieldTypes < ActiveRecord::Migration[5.0]
+class CreateFieldTypes < ActiveRecord::Migration[5.2]
 
   def up
     create_table :field_types do |t|

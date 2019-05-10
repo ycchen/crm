@@ -1,4 +1,4 @@
-class CreateContactTags < ActiveRecord::Migration[5.0]
+class CreateContactTags < ActiveRecord::Migration[5.2]
   
   def change
     create_table :contact_tags do |t|
