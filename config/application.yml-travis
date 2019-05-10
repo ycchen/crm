@@ -1,0 +1,8 @@
+version: '0.4.1'
+site_title: 'CRM12'
+fb_app_id: ''
+fb_app_secret: ''
+google_client_id: ''
+google_client_secret: ''
+base_url: ''
+www_url: 'http://localhost:3000'
