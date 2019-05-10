@@ -1,0 +1,11 @@
+.list-group-item{ id: :edit_note }
+  = simple_form_for [@contact, @note], html: { class: 'form-horizontal' }, remote: true do |f|
+    .row
+      .col-xs-12
+        = render partial: 'form', locals: { f: f }
+    .row
+      .col-xs-12
+        .pull-right
+          = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, cancel_edit_contact_note_path(@contact, @note), class: 'btn btn-sm btn-warning', remote: true
+          = f.button :button, class: 'btn btn-sm btn-success' do
+            #{sg('saved')} &nbsp;Update Note

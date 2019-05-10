@@ -1,0 +1,8 @@
+<% if @contact && @phone -%>
+  <% if @phone.errors.empty? -%>
+    $("#phones-<%= @contact.id %> #new_phone").before("<%= escape_javascript( render( partial: 'phone', locals: { phone: @phone } ) ) %>");
+    $('#phones-<%= @contact.id %> #new_phone').remove()
+  <% else %>
+    $('#phones-<%= @contact.id %> #new_phone').replaceWith("<%= escape_javascript( render( partial: 'new', locals: { phone: @phone } ) ) %>");
+  <% end -%>
+<% end -%>

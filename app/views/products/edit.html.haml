@@ -1,0 +1,11 @@
+.list-group-item{ id: :edit_product }
+  = simple_form_for @product, html: { multipart: true, class: 'form-horizontal' } do |f|
+    .row
+      .col-xs-12
+        = render partial: 'form', locals: { f: f }
+    .row
+      .col-xs-12
+        .pull-right
+          = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, products_path, class: 'btn btn-sm btn-warning'
+          = f.button :button, class: 'btn btn-sm btn-success' do
+            #{sg('saved')} &nbsp;Update Product

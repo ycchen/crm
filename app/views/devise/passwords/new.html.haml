@@ -1,0 +1,19 @@
+%p &nbsp;
+.col-md-3
+.col-xs-12.col-md-6
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        Search for your account:
+    .panel-body
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :email, required: true, autofocus: true
+        .form-actions
+          %button.btn.btn-danger{ type: :submit, id: :submit }
+            = "#{sg('refresh')} &nbsp;Send Password Reset Instructions".html_safe
+.col-md-3
+
+.row
+= render "devise/shared/links"

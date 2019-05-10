@@ -1,0 +1,2 @@
+$('#contacts').append('<%= escape_javascript render(@contacts) %>');
+$('.pagination').replaceWith('<%= escape_javascript will_paginate(@contacts, renderer: BootstrapPagination::Rails) %>');

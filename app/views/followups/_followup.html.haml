@@ -1,0 +1,28 @@
+.list-group-item
+  .row
+    .col-xs-12{ id: "f-#{followup.id}" }
+      .row
+        .col-xs-12
+          %b{ class: (:done if followup.completed) }
+            - if followup.when > Time.current
+              = link_to "#{sg('hourglass')} #{followup.followup_type.name} #{@contact.nil? ? followup.contact.fullname : ''} in #{time_ago_in_words(followup.when)}".html_safe, edit_followup_link(followup, @contact)
+            - else
+              %span{ class: (:expired unless followup.completed) }
+                = link_to "#{sg(followup.completed ? 'ok' : 'exclamation-sign')} #{followup.followup_type.name} #{@contact.nil? ? followup.contact.fullname : ''} #{time_ago_in_words(followup.when)} ago".html_safe, edit_followup_link(followup, @contact)
+
+      .row
+        .col-xs-12
+          %small
+            %b{ class: (:done if followup.completed) }
+              %span{ class: :timestamp }
+                = followup.pretty_when
+
+      .row
+        .col-xs-12
+          = link_to pretty_note(followup.note).html_safe, edit_followup_link(followup, @contact)
+          %p
+
+      - unless followup.completed
+        .row
+          .col-xs-12
+            = link_to "#{sg('ok')} &nbsp;Mark Completed".html_safe, complete_followup_link(followup, @contact), remote: true, class: 'btn btn-sm btn-success'

@@ -1,0 +1,7 @@
+<% if @note -%>
+  <% if @note.errors.empty? -%>
+    $('#n-<%= @note.id %>').html("<%= escape_javascript( render( partial: 'note_info', locals: { note: @note } ) ) %>");
+  <% else %>
+    $('#n-<%= @note.id %>').html("<%= escape_javascript( render( partial: 'edit', locals: { note: @note } ) ) %>");
+  <% end -%>
+<% end -%>

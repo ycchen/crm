@@ -1,0 +1,23 @@
+.list-group{ id: :custom_fields }
+  .list-group-item
+    .row
+      .col-xs-6
+        %p
+        %b
+          #{sg('time')} &nbsp;Custom Fields
+      .col-xs-6
+        .pull-right
+          = link_to "#{sg('plus')} &nbsp;Add Custom Field".html_safe, new_custom_field_path, class: 'btn btn-sm btn-success'
+
+  .list-group-item
+    .row
+      .col-xs-3
+        %b Name
+      .col-xs-3
+        %b Entity Type
+      .col-xs-3
+        %b Field Type
+      .col-xs-3
+        %b Required
+
+  = render @custom_fields

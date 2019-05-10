@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      - if user_signed_in?
+        %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      = link_to "&nbsp; <b class='globe'>🌎</b><b class='c'>C</b><b class='r'>R</b><b class='m'>M</b><b class='one'>1</b><b class='two'>2</b>".html_safe, '/', class: 'navbar-brand'
+    - if user_signed_in?
+      #navbar.navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right
+
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = "#{sg('user')} &nbsp;Dashboard".html_safe
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "#{sg('user')} &nbsp;Contacts (#{current_user.contacts_count})".html_safe, contacts_path
+              %li= link_to "#{sg('time')} &nbsp;Followups (#{current_user.incomplete_followups_count})".html_safe, followups_path
+              %li= link_to "#{sg('usd')} &nbsp;Sales (#{current_user.sales.count})".html_safe, sales_path
+              %li= link_to "#{sg('barcode')} &nbsp;Products (#{current_user.products.count})".html_safe, products_path
+              %li= link_to "#{sg('asterisk')} &nbsp;Custom Fields (#{current_user.custom_fields.count})".html_safe, custom_fields_path
+
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = "#{sg('user')} &nbsp;#{current_user.fullname}".html_safe
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "#{sg('user')} &nbsp;Profile".html_safe, edit_user_registration_path
+              %li= link_to "#{sg('log-out')} &nbsp;Logout".html_safe, logout_path

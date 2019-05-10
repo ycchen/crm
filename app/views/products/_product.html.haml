@@ -1,0 +1,10 @@
+.list-group-item
+  .row
+    .col-xs-12{ id: "p-#{product.id}" }
+      %p= link_to image_tag(product.img.url(:thumb)), edit_product_path(product)
+      %b= link_to " &nbsp;#{product.name}".html_safe, edit_product_path(product)
+      %p
+        = link_to number_to_currency(product.price), edit_product_path(product)
+        &nbsp;-&nbsp;
+        = link_to product.desc, edit_product_path(product)
+      %p

@@ -1,0 +1,31 @@
+
+.col-xs-12.col-md-4
+  = f.input :first_name, autofocus: true
+.col-md-4.col-md-offset-1
+  = f.input :last_name
+
+.col-xs-12
+  = f.input :address
+
+.col-xs-12
+  = f.input :address2
+
+.col-md-4
+  = f.input :city
+.col-md-2.col-md-offset-1
+  = f.association :state, label_method: :abbr
+.col-md-2.col-md-offset-1
+  = f.input :zip
+
+.col-xs-12
+  = f.input :email
+
+.col-xs-12
+  = f.label 'Tags', style: 'margin: 0 0 1px -14px;'
+  = f.input :tags_string, label: false, input_html: { 'data-role' => 'tagsinput', value: @contact.get_tags_string, id: "tags_#{@contact.id}" }
+
+:javascript
+  $('#tags_#{@contact.id}').tagsinput({});
+
+- current_user.custom_fields.for_entity(EntityType.contact).ordered.each do |field|
+  = render partial: "custom_fields/#{field.field_type.name}", locals: { entity: @contact, field: field, errors: @errors }

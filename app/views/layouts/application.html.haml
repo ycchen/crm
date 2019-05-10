@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title
+      = Figaro.env.site_title
+    = csrf_meta_tags
+    %meta{ content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name: :viewport }/
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    = render 'shared/navbar'
+    .container.outer
+      = render 'shared/notices'
+      = yield
+      = render 'shared/version'
+    %p &nbsp;

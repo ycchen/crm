@@ -1,0 +1,7 @@
+<% if @phone -%>
+  <% if @phone.errors.empty? -%>
+    $('#p-<%= @phone.id %>').html("<%= escape_javascript( render( partial: 'phone_info', locals: { phone: @phone } ) ) %>");
+  <% else %>
+    $('#p-<%= @phone.id %>').html("<%= escape_javascript( render( partial: 'edit', locals: { phone: @phone } ) ) %>");
+  <% end -%>
+<% end -%>

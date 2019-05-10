@@ -1,0 +1,18 @@
+- req = field.required ? 'required' : 'optional'
+- val = FieldValue.value_for(entity, field)
+.col-xs-12
+  %div{ class: "form-group #{req} custom_fields_#{field.id}" }
+    %label{ class: "control-label #{req}",  for: "custom_fields_#{field.id}" }
+      - if field.required
+        %abbr{ title: :required } *
+      = field.name
+    %p
+      %input{ type: :hidden, name: "custom_fields[#{field.id}][0]", id: "custom_fields_#{field.id}", value: 0 }/
+      - field.field_options.ordered.each do |o|
+        - checked = option_checkbox_checked(entity, field, o, params)
+        %input{ type: :checkbox, name: "custom_fields[#{field.id}][#{o.id}]", id: "option_#{o.id}", value: 1, checked: checked }/
+        &nbsp;
+        = o.name
+        %br
+    - if errors && errors["_#{field.id}".to_sym]
+      %p{ class: :error }= errors["_#{field.id}".to_sym]

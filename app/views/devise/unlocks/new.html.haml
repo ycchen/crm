@@ -1,0 +1,19 @@
+%p
+.col-md-3
+.col-xs-12.col-md-6
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        Resend Unlock Instructions
+    .panel-body
+      = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        = f.error_notification
+        = f.full_error :unlock_token
+        .form-inputs
+          = f.input :email, required: true, autofocus: true
+        .form-actions
+          %button.btn.btn-danger{ type: :submit, id: :submit }
+            = "#{sg('log-in')} &nbsp;Resend Unlock Instructions".html_safe
+.col-md-3
+
+= render 'devise/shared/links'

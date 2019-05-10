@@ -1,0 +1,19 @@
+
+.col-xs-12
+  = f.input :name, autofocus: true
+
+.col-xs-12
+  = f.input :desc, input_html: { rows: 5 }
+
+.col-xs-12
+  = f.input :price, input_html: { value: number_with_precision(@product.price, precision: 2) }
+
+- if @product.persisted?
+  .col-xs-12
+    = image_tag @product.img.url(:thumb)
+
+.col-xs-12
+  = f.input :img, as: :file
+
+- current_user.custom_fields.for_entity(EntityType.product).ordered.each do |field|
+  = render partial: "custom_fields/#{field.field_type.name}", locals: { entity: @product, field: field, errors: @errors }

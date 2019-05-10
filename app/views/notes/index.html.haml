@@ -1,0 +1,13 @@
+.list-group{ id: :notes }
+  .list-group-item
+    .row
+      .col-xs-12
+        %b
+          = "#{sg('th-list')} &nbsp;#{@contact.fullname} Notes".html_safe
+      .col-xs-12
+        %p
+        = render partial: 'contacts/actions', locals: { contact: @contact }
+
+  - @notes.each do |n|
+    = render partial: 'note', locals: { note: n }
+= will_paginate @notes, renderer: BootstrapPagination::Rails

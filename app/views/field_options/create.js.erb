@@ -1,0 +1,4 @@
+<% if @field_option && @field_option.persisted? -%>
+$('#field_<%= @custom_field.id %>_options').html("<%= escape_javascript( render( partial: 'custom_fields/field_options', locals: { custom_field: @custom_field } ) ) %>");
+setupSortable(<%= @custom_field.id %>);
+<% end -%>

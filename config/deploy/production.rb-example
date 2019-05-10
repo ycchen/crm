@@ -1,0 +1,4 @@
+server 'example.com', user: fetch(:deploy_user), roles: %w(app db web), port: 22
+set :branch, 'master'
+set :deploy_to, '/app/example.com'
+set :rails_env, 'production'

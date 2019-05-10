@@ -1,0 +1,19 @@
+- if @contact.nil?
+  .col-xs-12
+    .form-group.select.required.followup_followup_type
+      %label.control-label
+        = @followup.contact.fullname
+.col-xs-12
+  = f.association :followup_type
+.col-xs-12
+  .form-group.text.required.followup_when
+    %label{ class: 'control-label text required', for: :followup_when }
+      %abbr{ title: :required } * When
+    = f.text_field :when, { value: @followup.nil? ? '' : @followup.pretty_when, class: 'form-control text required datetimepicker' }
+.col-xs-12
+  = f.input :note, input_html: { rows: 7 }
+.col-xs-12
+  = f.input :completed
+
+- current_user.custom_fields.for_entity(EntityType.followup).ordered.each do |field|
+  = render partial: "custom_fields/#{field.field_type.name}", locals: { entity: @followup, field: field, errors: @errors }

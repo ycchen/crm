@@ -1,0 +1,4 @@
+<% if @contact && @phone -%>
+$('#phones-<%= @contact.id %> #new_phone').remove();
+$('#phones-<%= @contact.id %> #new_phone_button').before("<%= escape_javascript( render( partial: 'new', locals: { phone: @phone } ) ) %>");
+<% end -%>

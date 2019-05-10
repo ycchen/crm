@@ -1,0 +1,17 @@
+.col-xs-12
+  .row
+    %small
+      %b
+        = sg('file')
+        = link_to "#{time_ago_in_words(note.created_at)} ago".html_safe, edit_contact_note_path(note.contact, note), remote: true
+
+.col-xs-12
+  .row
+    %small
+      %b
+        %span{ class: :timestamp }
+          #{note.pretty_created_at}
+
+.col-xs-12
+  .row
+    = link_to pretty_note(note.note).html_safe, edit_contact_note_path(note.contact, note), remote: true

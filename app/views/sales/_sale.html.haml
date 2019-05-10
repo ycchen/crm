@@ -1,0 +1,8 @@
+.list-group-item
+  .row
+    .col-md-4
+      = link_to "#{sg('user')} &nbsp;#{sale.contact.fullname}".html_safe, sale_sale_items_path(sale)
+    .col-md-8
+      = link_to sale.pretty_created_at, sale_sale_items_path(sale)
+      .pull-right
+        = link_to number_to_currency(sale.total), sale_sale_items_path(sale)

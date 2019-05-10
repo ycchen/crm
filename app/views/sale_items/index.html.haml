@@ -1,0 +1,73 @@
+
+.list-group{ id: :sale_items }
+
+  .list-group-item
+    .row
+      .col-xs-12
+        %b
+          = @sale.contact.fullname
+          .pull-right
+            = @sale.pretty_created_at
+  
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th Product
+        %th.col-xs-2.text-center Price
+        %th.col-xs-2.text-center Quantity
+        %th.col-xs-2.text-center Subtotal
+        %th.col-xs-1 &nbsp;
+    - @sale_items.each do |i|
+      %tr{ id: "i-#{i.id}" }
+        %td= "#{sg('barcode')} &nbsp;#{i.product.name}".html_safe
+        %td
+          .pull-right
+            = number_to_currency(i.price)
+        %td
+          .pull-right
+            = i.quantity
+        %td
+          .pull-right
+            = number_to_currency(i.quantity * i.price)
+        %td.text-center
+          = link_to 'X', sale_sale_item_path(@sale, i), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
+    %tfoot
+      %tr
+        %td{ colspan: 3 }
+          .pull-right
+            %b Total:
+        %td
+          .pull-right
+            = number_to_currency(@sale.total)
+        %td &nbsp;
+
+.list-group-item
+  = simple_form_for [@sale, @sale_item], html: { class: 'form-horizontal' } do |f|
+    .col-xs-9
+      = f.input :product
+      %input{ type: :hidden, name: 'sale_item[product_id]', id: :sale_item_product_id }
+      %input{ type: :hidden, name: 'sale_item[price]', id: :sale_item_price }
+    .col-xs-offset-1.col-xs-2
+      = f.input :quantity, input_html: { value: 1 }
+    .row
+      .col-xs-12
+        .pull-right
+          = f.button :button, class: 'btn btn-sm btn-success' do
+            #{sg('saved')} &nbsp;Add
+
+%p
+  &nbsp;
+
+- unless @custom_fields.empty?
+  .list-group-item{ id: :edit_sale }
+    = simple_form_for @sale, html: { class: 'form-horizontal' } do |f|
+      .row
+        .col-xs-12
+          - @custom_fields.each do |field|
+            = render partial: "custom_fields/#{field.field_type.name}", locals: { entity: @sale, field: field, errors: @errors }
+      .row
+        .col-xs-12
+          .pull-right
+            = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, sales_path, class: 'btn btn-sm btn-warning'
+            = f.button :button, class: 'btn btn-sm btn-success' do
+              #{sg('saved')} &nbsp;Update Sale

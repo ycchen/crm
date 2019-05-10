@@ -1,0 +1,93 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-tagsinput';
+@import 'bootstrap-tagsinput-typeahead';
+@import 'bootstrap-datetimepicker';
+@import 'fineuploader';
+@import 'navbar';
+@import 'autocomplete';
+@import 'jquery-ui';
+
+.outer {
+  margin-top: 50px;
+}
+
+.container {
+  padding: 0;
+}
+
+.pagination {
+  margin: 0;
+}
+
+div#contacts {
+  margin: 0 0 5px 0;
+}
+
+a, a:hover {
+  color: #000;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+div.datetimepicker {
+  margin-top: 49px;
+}
+
+.timestamp {
+  color: #808080;
+  font-size: 10px;
+}
+
+span.expired a, p.error {
+  color: #d00;
+}
+
+p.error {
+  padding: 0;
+  margin: -4px 0 0 0;
+}
+
+a.google {
+  background-image: url("<%= asset_path 'btn_google' %>");
+  background-repeat: no-repeat;
+  display: block;
+  height: 46px;
+  width: 191px;
+  margin: 0 0 8px 0;
+}
+
+a.facebook {
+  background-image: url("<%= asset_path 'btn_facebook' %>");
+  background-repeat: no-repeat;
+  display: block;
+  height: 46px;
+  width: 191px;
+}
+
+div.alert {
+  margin: 10px 0;
+}
+
+.navbar-header a {
+  b.globe { color: #ccc; padding-right: 2px; }
+  b.c     { color: #fff; }
+  b.r     { color: #fff; }
+  b.m     { color: #fff; }
+  b.one   { color: #ee0; }
+  b.two   { color: #e00; }
+}
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
+
+.handle {
+  cursor: pointer;
+}

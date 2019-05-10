@@ -1,0 +1,12 @@
+.list-group-item{ id: :edit_contact }
+  = simple_form_for @contact, html: { class: 'form-horizontal', novalidate: false } do |f|
+    = render partial: 'form', locals: { f: f, contact: @contact, errors: @errors }
+    .row
+      .col-xs-12
+        .pull-right
+          = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, contacts_path, class: 'btn btn-sm btn-warning'
+          = f.button :button, class: 'btn btn-sm btn-success' do
+            #{sg('saved')} &nbsp;Update Contact
+  .col-xs-12
+    %p
+      &nbsp;

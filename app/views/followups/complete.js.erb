@@ -1,0 +1,4 @@
+<% if @followup -%>
+  $('#f-<%= @followup.id %>').closest('.list-group-item').remove();
+  $('nav.navbar').replaceWith("<%= escape_javascript( render( partial: 'shared/navbar' ) ) %>");
+<% end -%>

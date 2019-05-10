@@ -1,0 +1,50 @@
+.row
+.col-md-3
+.col-xs-12.col-md-6
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        More
+    .panel-body
+      - if devise_mapping.registerable? && controller_name != 'registrations'
+        %p= link_to "#{sg('user')} &nbsp;Sign Up".html_safe, new_registration_path(resource_name), class: 'btn btn-success'
+      - if controller_name != 'sessions'
+        %p= link_to "#{sg('log-in')} &nbsp;Login".html_safe, new_session_path(resource_name), class: 'btn btn-primary'
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        %p= link_to "#{sg('alert')} &nbsp;Lost Password".html_safe, new_password_path(resource_name), class: 'btn btn-warning'
+      - if devise_mapping.confirmable? && controller_name != 'confirmations'
+        %p= link_to "#{sg('alert')} &nbsp;Didn't receive confirmation instructions?".html_safe, new_confirmation_path(resource_name), class: 'btn btn-warning'
+      - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+        %p= link_to "#{sg('alert')} &nbsp;Didn't receive unlock instructions?".html_safe, new_unlock_path(resource_name), class: 'btn btn-warning'
+.col-md-3
+
+
+-# .col-md-3
+-# .col-xs-12.col-md-6
+-#   %p &nbsp;
+-#   .panel.panel-default
+-#     .panel-heading
+-#       %h3.panel-title
+-#         Or login using another account you own:
+-#     .panel-body
+-#       = link_to '', omniauth_authorize_path(resource_name, 'google_oauth2'), class: :google
+-#       = link_to '', omniauth_authorize_path(resource_name, 'facebook'), class: :facebook
+-# .col-md-3
+
+-# %p &nbsp;
+
+-# - if devise_mapping.omniauthable?
+-#   - resource_class.omniauth_providers.each do |provider|
+-#     = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'btn btn-primary'
+
+-# .row
+-#   %p
+-#   .col-md-3
+-#   .col-xs-12.col-md-6
+-#     - if devise_mapping.confirmable? && controller_name != 'confirmations'
+-#       = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+-#     - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+-#       = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+-#   .col-md-3
+-#   %p
+

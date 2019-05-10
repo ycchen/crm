@@ -1,0 +1,20 @@
+.list-group-item
+  .row
+    .col-xs-12.col-md-6{ id: "c-#{contact.id}" }
+      = pretty_contact(contact)
+      .row
+        .col-xs-12
+          %p
+          = render partial: 'contacts/actions', locals: { contact: contact }
+      %p
+    .col-xs-12.col-md-6{ id: "phones-#{contact.id}" }
+      .row
+        .col-xs-12
+          %b Contacted:
+          = contact.pretty_last_contacted
+      %p
+      - contact.phones.each do |p|
+        = render partial: 'phones/phone', locals: { phone: p }
+      %div{ id: :new_phone_button }
+        %p
+        = link_to "#{sg('plus')} &nbsp;New Phone".html_safe, new_contact_phone_path(contact), class: 'btn btn-sm btn-success', remote: true

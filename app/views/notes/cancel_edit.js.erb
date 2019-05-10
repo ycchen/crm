@@ -1,0 +1,3 @@
+<% if @note -%>
+  $('#n-<%= @note.id %>').html("<%= escape_javascript( render( partial: 'note_info', locals: { note: @note } ) ) %>");
+<% end -%>

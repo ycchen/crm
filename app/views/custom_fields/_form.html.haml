@@ -1,0 +1,19 @@
+- if %w(new create).include?(action_name)
+  .col-xs-12
+    = f.association :entity_type
+  %p.btn.btn-sm.btn-danger
+    WARNING: You cannot change the entity type later.
+  %p
+- else
+  .col-xs-12
+    .form-group.string.required.custom_field_entity_type
+      %label.control-label.string.required{ for: :custom_field_entity_type }
+        Entity Type:
+        = @custom_field.entity_type.name
+
+.col-xs-12
+  = f.input :name
+.col-xs-12
+  = f.association :field_type
+.col-xs-12#required
+  = f.input :required

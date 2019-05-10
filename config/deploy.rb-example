@@ -1,0 +1,11 @@
+# config valid only for current version of Capistrano
+lock '3.11.0'
+
+set :application, 'example.com'
+set :deploy_user, 'gd'
+set :repo_url, 'git@github.com:gdonald/crm.git'
+set :pty, true
+set :passenger_restart_with_touch, true
+
+append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'

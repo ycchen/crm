@@ -1,0 +1,18 @@
+.list-group-item{ id: :edit_custom_field }
+  = simple_form_for @custom_field, html: { class: 'form-horizontal' } do |f|
+    .row
+      .col-xs-12
+        = render partial: 'form', locals: { f: f, custom_field: @custom_field }
+    .row
+      .col-xs-12
+        .pull-right
+          = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, custom_fields_path, class: 'btn btn-sm btn-warning'
+          = f.button :button, class: 'btn btn-sm btn-success' do
+            #{sg('saved')} &nbsp;Update Custom Field
+
+- if @custom_field.can_have_options?
+  .list-group-item{ id: "field_#{@custom_field.id}_options" }
+    = render partial: 'field_options', locals: { custom_field: @custom_field }
+
+:javascript
+  setupSortable(#{@custom_field.id});

@@ -1,0 +1,26 @@
+.list-group{ id: :followups }
+  .list-group-item
+    .row
+      .col-xs-12
+        %b
+          #{sg('time')}&nbsp;
+          - if @contact
+            #{@contact.fullname}
+          Followups
+    .row
+      .col-xs-12
+        %p
+        - if session[:show_completed_followups] && session[:show_completed_followups] == 1
+          = link_to "#{sg('ok')} &nbsp;Completed".html_safe, send(@contact ? :completed_contact_followups_path : :completed_followups_path, { show_completed_followups: 0 }), class: 'btn btn-sm btn-success'
+        - else
+          = link_to "#{sg('hourglass')} &nbsp;Incomplete".html_safe, send(@contact ? :completed_contact_followups_path : :completed_followups_path, { show_completed_followups: 1 }), class: 'btn btn-sm btn-warning'
+        &nbsp;
+        - if @contact
+          = render partial: 'contacts/actions', locals: { contact: @contact }
+
+  = render @followups
+
+= will_paginate @followups, renderer: BootstrapPagination::Rails
+
+%a#back-to-top.btn.btn-primary.btn-sm.back-to-top{ 'data-placement' => :left, 'data-toggle' => :tooltip, :href => '#', role: :button, title: 'Click to return on the top page' }
+  %span.glyphicon.glyphicon-chevron-up

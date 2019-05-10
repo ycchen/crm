@@ -1,0 +1,41 @@
+.row
+
+  .col-xs-12
+    %table.table.table-bordered.table-striped{ id: "options_#{custom_field.id}" }
+      %thead
+        %tr
+          %th Name
+          %th &nbsp;
+      %tbody
+        - if custom_field.field_options.size.zero?
+          %tr
+            %td{ colspan: 2 } No options found
+        - else
+          - custom_field.field_options.ordered.each do |o|
+            %tr{ id: "option_#{o.id}" }
+              %td= "<span class='handle'>#{sg('sort')}</span> &nbsp;#{o.name}".html_safe
+              %td= link_to 'X', custom_field_field_option_path(custom_field, o), class: 'btn btn-sm btn-danger', method: :delete, remote: true, data: { confirm: 'Are you sure?' }
+
+  .col-xs-12
+
+    = simple_form_for [@custom_field, @new_field_option], html: { class: 'form-horizontal' }, remote: true do |f|
+
+      .list-group
+
+        .list-group-item
+          .row
+            .col-xs-12
+              %b
+                = "#{sg('list')} &nbsp;New Option".html_safe
+
+        .list-group-item
+          .row
+            .col-xs-12
+              = render partial: 'custom_fields/option_form', locals: { f: f }
+
+        .list-group-item
+          .row
+            .col-xs-12
+              .pull-right
+                = f.button :button, class: 'btn btn-sm btn-success' do
+                  #{sg('saved')} &nbsp;Create Field Option

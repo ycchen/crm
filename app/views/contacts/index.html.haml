@@ -1,0 +1,31 @@
+.row
+.list-group{ id: :contacts }
+  .list-group-item
+    .row
+      .col-xs-4
+        %p
+        %b
+          = "#{sg('user')} &nbsp;Contacts".html_safe
+
+      .col-xs-5
+        .pull-right
+          %form.form-inline{ action: contacts_path, method: :get, role: 'search' }
+            .input-group
+              %input.form-control.input-sm{ name: :query, placeholder: 'Search', type: 'text', value: @query }/
+              .input-group-btn
+                %button.btn.btn-sm.btn-danger.submit{ type: 'submit' }
+                  = sg('search')
+
+      .col-xs-3
+        .pull-right
+          = link_to "#{sg('plus')} &nbsp;New".html_safe, new_contact_path, class: 'btn btn-sm btn-success'
+          &nbsp;
+  
+  - if @contacts.count.zero?
+    = render partial: 'no_results'
+  - else
+    = render @contacts
+= will_paginate @contacts, renderer: BootstrapPagination::Rails
+
+%a#back-to-top.btn.btn-primary.btn-sm.back-to-top{ 'data-placement' => :left, 'data-toggle' => :tooltip, :href => '#', role: :button, title: 'Click to return on the top page' }
+  %span.glyphicon.glyphicon-chevron-up

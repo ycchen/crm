@@ -1,0 +1,20 @@
+.list-group{ id: :sales }
+  .list-group-item
+    .row
+      .col-xs-6
+        %p
+        %b
+          #{sg('usd')} &nbsp;Sales
+          - if @contact
+            &nbsp;-&nbsp;
+            = @contact.fullname
+      .col-xs-6
+        .pull-right
+          = link_to "#{sg('plus')} &nbsp;Add Sale".html_safe, new_sale_path, class: 'btn btn-sm btn-success'
+
+  = render @sales
+
+= will_paginate @sales, renderer: BootstrapPagination::Rails
+
+%a#back-to-top.btn.btn-primary.btn-sm.back-to-top{ 'data-placement' => :left, 'data-toggle' => :tooltip, :href => '#', role: :button, title: 'Click to return on the top page' }
+  %span.glyphicon.glyphicon-chevron-up

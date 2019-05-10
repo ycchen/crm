@@ -1,0 +1,17 @@
+.list-group{ id: :products }
+  .list-group-item
+    .row
+      .col-xs-6
+        %p
+        %b
+          #{sg('barcode')} &nbsp;Products
+      .col-xs-6
+        .pull-right
+          = link_to "#{sg('plus')} &nbsp;Add Product".html_safe, new_product_path, class: 'btn btn-sm btn-success'
+
+  = render @products
+
+= will_paginate @products, renderer: BootstrapPagination::Rails
+
+%a#back-to-top.btn.btn-primary.btn-sm.back-to-top{ 'data-placement' => :left, 'data-toggle' => :tooltip, :href => '#', role: :button, title: 'Click to return on the top page' }
+  %span.glyphicon.glyphicon-chevron-up

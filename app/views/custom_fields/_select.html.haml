@@ -1,0 +1,17 @@
+- req = field.required ? 'required' : 'optional'
+- val = FieldValue.value_for(entity, field)
+.col-xs-12
+  %div{ class: "form-group string #{req} custom_fields_#{field.id}" }
+    %label{ class: "control-label string #{req}",  for: "custom_fields_#{field.id}" }
+      - if field.required
+        %abbr{ title: :required } *
+      = field.name
+    %p
+      %select{ class: "form-control string #{req}", name: "custom_fields[#{field.id}]", id: "custom_fields_#{field.id}" }
+        %option
+        - field.field_options.ordered.each do |o|
+          - selected = select_option_selected(entity, field, o, params)
+          %option{ value: o.id, selected: selected }
+            = o.name
+    - if errors && errors["_#{field.id}".to_sym]
+      %p{ class: :error }= errors["_#{field.id}".to_sym]

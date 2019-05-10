@@ -1,0 +1,35 @@
+
+%p
+.col-md-3
+.col-xs-12.col-md-6
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        Signup using another account you own
+    .panel-body
+      = link_to '', omniauth_authorize_path(resource_name, 'google_oauth2'), class: :google
+      = link_to '', omniauth_authorize_path(resource_name, 'facebook'), class: :facebook
+.col-md-3
+
+.row
+.col-md-3
+.col-xs-12.col-md-6
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        Manual Signup
+    .panel-body
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :fname, required: true, label: 'First Name', autofocus: true
+          = f.input :lname, required: true, label: 'Last Name'
+          = f.input :email, required: true
+          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          = f.input :password_confirmation, required: true
+        .form-actions
+          %button.btn.btn-danger{ type: :submit, id: :submit }
+            = "#{sg('log-in')} &nbsp;Sign Up".html_safe
+.col-md-3
+
+= render 'devise/shared/links'

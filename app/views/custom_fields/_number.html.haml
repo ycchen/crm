@@ -1,0 +1,11 @@
+- req = field.required ? 'required' : 'optional'
+.col-xs-12
+  %div{ class: "form-group string #{req} custom_fields_#{field.id}" }
+    %label{ class: "control-label string #{req}",  for: "custom_fields_#{field.id}" }
+      - if field.required
+        %abbr{ title: :required } *
+      = field.name
+    %p
+      %input{ type: :number, class: "form-control string #{req}", name: "custom_fields[#{field.id}]", id: "custom_fields_#{field.id}", value: FieldValue.value_for(entity, field), placeholder: "#{field.name} value" }/
+    - if errors && errors["_#{field.id}".to_sym]
+      %p{ class: :error }= errors["_#{field.id}".to_sym]

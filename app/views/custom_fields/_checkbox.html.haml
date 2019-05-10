@@ -1,0 +1,10 @@
+- checked = checkbox_checked(entity, field)
+.col-xs-12
+  %div{ class: "form-group custom_fields_#{field.id}" }
+    %label{ class: "control-label",  for: "custom_fields_#{field.id}" }
+      = field.name
+    %p
+      %input{ type: :hidden, name: "custom_fields[#{field.id}]", id: "custom_fields_#{field.id}", value: 0 }/
+      %input{ type: :checkbox, name: "custom_fields[#{field.id}]", id: "custom_fields_#{field.id}", value: 1, checked: checked }/
+    - if errors && errors["_#{field.id}".to_sym]
+      %p{ class: :error }= errors["_#{field.id}".to_sym]

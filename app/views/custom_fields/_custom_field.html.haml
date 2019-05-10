@@ -1,0 +1,12 @@
+.list-group-item
+  .row
+    .col-xs-12{ id: "cf-#{custom_field.id}" }
+      .row
+        .col-xs-3
+          = link_to custom_field.name, edit_custom_field_path(custom_field)
+        .col-xs-3
+          = link_to custom_field.entity_type.name, edit_custom_field_path(custom_field)
+        .col-xs-3
+          = link_to custom_field.field_type.name, edit_custom_field_path(custom_field)
+        .col-xs-3
+          = link_to custom_field.required ? 'Yes' : 'No', edit_custom_field_path(custom_field)

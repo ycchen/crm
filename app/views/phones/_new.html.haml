@@ -1,0 +1,8 @@
+.list-group-item{ id: :new_phone }
+  .row
+    .col-xs-12
+      = simple_form_for [@contact, @phone], html: { class: 'form-horizontal' }, remote: true do |f|
+        = render partial: 'form', locals: { f: f }
+        = link_to "#{sg('ban-circle')} &nbsp;Cancel".html_safe, cancel_new_contact_phones_path(@contact), class: 'btn btn-sm btn-warning', remote: true
+        = f.button :button, class: 'btn btn-sm btn-success' do
+          #{sg('saved')} &nbsp;Create Phone

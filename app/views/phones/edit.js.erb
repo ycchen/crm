@@ -1,0 +1,3 @@
+<% if @phone -%>
+$('#p-<%= @phone.id %>').html("<%= escape_javascript( render( partial: 'edit', locals: { phone: @phone } ) ) %>");
+<% end -%>
