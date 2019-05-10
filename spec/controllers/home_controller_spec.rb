@@ -23,8 +23,7 @@ RSpec.describe HomeController, type: :controller do
     it 'redirects to www_url' do
       sign_in user
       get :logout
-      expect(response).to redirect_to(Figaro.env.www_url)
+      expect(response).to be_redirect
     end
   end
-
 end
