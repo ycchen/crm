@@ -7,7 +7,7 @@ end
 gem 'activerecord-session_store'
 gem 'acts_as_list'
 gem 'bcrypt'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'coffee-rails'
 gem 'devise'
 gem 'factory_bot_rails'
